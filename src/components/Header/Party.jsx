@@ -27,7 +27,7 @@ class Party extends React.Component {
 
     render() {
         const party = Party.setUp(this.props.pokemon.party);
-        if (this.props.pokemon.pokemon.length === 0) {
+        if (this.props.pokemon.all.length === 0) {
             return null;
         }
         const div = <div>&nbsp;</div>;

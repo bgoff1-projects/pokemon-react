@@ -1,22 +1,5 @@
 import { url } from "../utils";
 
-let nextTodoId = 0;
-export const addTodo = text => ({
-    type: 'ADD_TODO',
-    id: nextTodoId++,
-    text
-});
-
-export const setVisibilityFilter = filter => ({
-    type: 'SET_VISIBILITY_FILTER',
-    filter
-});
-
-export const toggleTodo = id => ({
-    type: 'TOGGLE_TODO',
-    id
-});
-
 export const addPokemonToStore = pokemon => ({
     type: 'ADD_POKEMON_BULK',
     pokemon
@@ -42,6 +25,15 @@ export const removePokemonFromGrid = index => ({
     index
 });
 
+export const flipTypeFilter = typeToFlip => ({
+    type: 'FLIP_TYPE_FILTER',
+    typeToFlip
+});
+
+export const flipGenerationFilter = generationToFlip => ({
+    type: 'FLIP_GEN_FILTER',
+    generationToFlip
+});
 
 export function getPokemon() {
     return dispatch => {
@@ -50,9 +42,3 @@ export function getPokemon() {
             .then(json => dispatch(addPokemonToStore(json)))
     }
 }
-
-export const VisibilityFilters = {
-    SHOW_ALL: 'SHOW_ALL',
-    SHOW_COMPLETED: 'SHOW_COMPLETED',
-    SHOW_ACTIVE: 'SHOW_ACTIVE'
-};

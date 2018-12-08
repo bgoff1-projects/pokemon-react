@@ -21,7 +21,7 @@ class RightSideBar extends React.Component {
     }
 
     render() {
-        if (this.props.pokemon.pokemon && this.props.pokemon.pokemon.length !== 0) {
+        if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (<div className='col-md-2 weaknesses'>
                 <span className='text-center'>Weaknesses:</span>
                 <table>

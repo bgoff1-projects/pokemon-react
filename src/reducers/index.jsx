@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
-import visibilityFilter from './visibilityFilter'
+import { combineReducers } from 'redux';
+import typeFilter from './typeFilter';
+import generationFilter from './generationFilter';
 import pokemon from "./pokemon";
 
 export default combineReducers({
-    visibilityFilter,
+    typeFilter,
+    generationFilter,
     pokemon
 })

@@ -5,7 +5,9 @@ import './Pokemon.css';
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
-    party: state.party
+    party: state.party,
+    typeFilter: state.typeFilter,
+    generationFilter: state.generationFilter
 });
 
 class View extends React.Component {
@@ -21,38 +23,54 @@ class View extends React.Component {
         }
     }
 
+    cloneAll() {
+        let result = [];
+        for (const poke of this.props.pokemon.all) {
+            poke.hasBeenAdded = false;
+            result.push(poke);
+        }
+        return result;
+    }
+
+    filter2() {
+        return this.props.pokemon.all.filter(p => {
+            for (const generation in this.props.generationFilter) {
+                if (this.props.generationFilter.hasOwnProperty(generation) && this.props.generationFilter[ generation ] === false
+                    && (p.hasOwnProperty('generation') && p.generation === Number.parseInt(generation))) {
+                    return false;
+                }
+            }
+            for (const type in this.props.typeFilter) {
+                if (this.props.typeFilter.hasOwnProperty(type) && this.props.typeFilter[ type ] === true &&
+                    (p.types[ 0 ] === type || p.types[ 1 ] === type)) return true;
+            }
+            return false;
+        }).sort((a, b) => {
+            if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
+                return a.pokemonNumber - b.pokemonNumber;
+            }
+            return a - b;
+        });
+    }
+
     render() {
-        const pokemon = this.props.pokemon.pokemon;
+        const pokemon = this.filter2();
         if (pokemon) {
-            let i = 1;
             return (
                 <div className='col-md-8 text-center'>
                     {
                         pokemon.map((poke, index) => {
-                            let result;
-                            let className;
-                            if (poke.types.length === 1) {
-                                className = `circle ${poke.types[ 0 ]}`;
-                            } else {
-                                className = `circle ${poke.types[ 1 ]}-main ${poke.types[ 0 ]}-secondary`;
-                            }
+                            let className = poke.types.length === 1 ? `circle ${poke.types[ 0 ]}` : `circle ${poke.types[ 1 ]}-main ${poke.types[ 0 ]}-secondary`;
                             const image = <img className={ className }
                                                src={ `data:image/png;base64, ${poke.image}` }
                                                alt={ poke.name } width={ '52px' } height={ '52px' }
                                                onClick={ () => this.onClick(poke, index) }/>;
-                            if (i % 15 === 0) {
-                                result = (<span key={ i } title={ poke.name }>{ image }</span>);
-                            } else {
-                                result = (<span key={ i } title={ poke.name }>{ image }</span>);
-                            }
-                            i++;
-                            return result;
+                            return (<span key={ poke.name } title={ poke.name }>{ image }</span>);
                         }) }
                 </div>
             );
         }
     }
-
 }
 
 export default connect(mapStateToProps)(View);

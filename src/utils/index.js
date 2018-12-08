@@ -1,6 +1,15 @@
 import { createMap } from './map';
 
-export const url = 'https://pure-caverns-33114.herokuapp.com';
+const env = 'DEV';
+
+let URL = '';
+if (env === 'DEV') {
+    URL = 'http://localhost:8000';
+} else {
+    console.log(env);
+    URL = 'https://pure-caverns-33114.herokuapp.com';
+}
+export const url = URL;
 
 const map = createMap();
 
