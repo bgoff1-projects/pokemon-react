@@ -1,3 +1,5 @@
+import { url } from "../utils";
+
 let nextTodoId = 0;
 export const addTodo = text => ({
     type: 'ADD_TODO',
@@ -43,7 +45,7 @@ export const removePokemonFromGrid = index => ({
 
 export function getPokemon() {
     return dispatch => {
-        return fetch('http://localhost:8000/pokemon')
+        return fetch(`${url}/pokemon`)
             .then(response => response.json())
             .then(json => dispatch(addPokemonToStore(json)))
     }

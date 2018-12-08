@@ -1,5 +1,7 @@
 import { createMap } from './map';
 
+export const url = 'https://pure-caverns-33114.herokuapp.com/';
+
 const map = createMap();
 
 export function isStrongAgainst(pokemon, type) {
