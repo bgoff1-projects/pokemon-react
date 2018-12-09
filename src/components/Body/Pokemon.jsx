@@ -23,38 +23,31 @@ class View extends React.Component {
         }
     }
 
-    cloneAll() {
-        let result = [];
-        for (const poke of this.props.pokemon.all) {
-            poke.hasBeenAdded = false;
-            result.push(poke);
-        }
-        return result;
-    }
-
-    filter2() {
-        return this.props.pokemon.all.filter(p => {
-            for (const generation in this.props.generationFilter) {
-                if (this.props.generationFilter.hasOwnProperty(generation) && this.props.generationFilter[ generation ] === false
-                    && (p.hasOwnProperty('generation') && p.generation === Number.parseInt(generation))) {
-                    return false;
+    filter() {
+        if (this.props && this.props.pokemon.all) {
+            return this.props.pokemon.all.filter(p => {
+                for (const generation in this.props.generationFilter) {
+                    if (this.props.generationFilter.hasOwnProperty(generation) && this.props.generationFilter[ generation ] === false
+                        && (p.hasOwnProperty('generation') && p.generation === Number.parseInt(generation))) {
+                        return false;
+                    }
                 }
-            }
-            for (const type in this.props.typeFilter) {
-                if (this.props.typeFilter.hasOwnProperty(type) && this.props.typeFilter[ type ] === true &&
-                    (p.types[ 0 ] === type || p.types[ 1 ] === type)) return true;
-            }
-            return false;
-        }).sort((a, b) => {
-            if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
-                return a.pokemonNumber - b.pokemonNumber;
-            }
-            return a - b;
-        });
+                for (const type in this.props.typeFilter) {
+                    if (this.props.typeFilter.hasOwnProperty(type) && this.props.typeFilter[ type ] === true &&
+                        (p.types[ 0 ] === type || p.types[ 1 ] === type)) return true;
+                }
+                return false;
+            }).sort((a, b) => {
+                if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
+                    return a.pokemonNumber - b.pokemonNumber;
+                }
+                return a - b;
+            });
+        } else return null;
     }
 
     render() {
-        const pokemon = this.filter2();
+        let pokemon = this.filter();
         if (pokemon) {
             return (
                 <div className='col-md-8 text-center'>
@@ -69,6 +62,10 @@ class View extends React.Component {
                         }) }
                 </div>
             );
+        } else {
+            return <div className='still-loading'>
+                <img src='./pokeball.png' alt='pokeball' className='pokeball'/>
+            </div>
         }
     }
 }

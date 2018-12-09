@@ -28,7 +28,6 @@ class LeftHeader extends React.Component {
     }
 
     static addRegionalName(gen) {
-        console.log('adding regional Name');
         switch (Number.parseInt(gen)) {
             case 1: return `${gen}: Kanto`;
             case 2: return `${gen}: Johto`;
