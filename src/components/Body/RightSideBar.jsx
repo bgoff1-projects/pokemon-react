@@ -22,9 +22,9 @@ class RightSideBar extends React.Component {
 
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
-            return (<div className='col-md-2 weaknesses'>
+            return (<div className='col-md-2 weaknesses text-left'>
                 <span className='text-center'>Weaknesses:</span>
-                <table>
+                <table style={{'width': '100px'}}>
                     <tbody>
                     { types.map((val, index) => <tr key={index}>
                         <td>{ val }</td>
