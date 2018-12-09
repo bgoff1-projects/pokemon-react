@@ -14,6 +14,20 @@ const typeFilter = (state = initialState, action) => {
                 }
             }
             return {...state};
+        case 'FLIP_ALL_TYPE_FILTER_TRUE':
+            for (const type in state) {
+                if (state.hasOwnProperty(type)) {
+                    state[type] = true;
+                }
+            }
+            return {...state};
+        case 'FLIP_ALL_TYPE_FILTER_FALSE':
+            for (const type in state) {
+                if (state.hasOwnProperty(type)) {
+                    state[type] = false;
+                }
+            }
+            return {...state};
         default:
             return {...state};
     }

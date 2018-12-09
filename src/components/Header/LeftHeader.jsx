@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { flipTypeFilter } from "../../actions";
-import './header.css';
+import { flipAllTypesFalse, flipAllTypesTrue, flipTypeFilter } from "../../actions";
+
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
     selected: state.typeFilter
@@ -16,6 +16,7 @@ class LeftHeader extends React.Component {
             }
         }
         if (count === 18) return 'All Types Selected';
+        if (count === 0) return 'No Types Selected';
         return count + ' Selected';
     }
 
@@ -40,6 +41,14 @@ class LeftHeader extends React.Component {
         this.props.dispatch(flipTypeFilter(type));
     }
 
+    toggleAll() {
+        if (this.count() === 'All Types Selected') {
+            this.props.dispatch(flipAllTypesFalse());
+        } else {
+            this.props.dispatch(flipAllTypesTrue());
+        }
+    }
+
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
@@ -50,10 +59,15 @@ class LeftHeader extends React.Component {
                             {<span>{this.count()}</span>}
                         </button>
                         <div className="dropdown-menu">
+                            <div key={ 'all' } className='ml-4'>
+                                <label className='checkbox'>
+                                    <button onClick={() => this.toggleAll()} >Select all</button>
+                                </label>
+                            </div>
                             {this.getNames().map(val =>
                                 <div key={ val } className='ml-4'>
                                     <label className='checkbox'>
-                                        <input type='checkbox' value={val} onChange={() => this.onChange(val)} defaultChecked={this.check(val)} />
+                                        <input type='checkbox' value={val} onChange={() => this.onChange(val)} checked={this.check(val)}/>
                                         { val }
                                     </label>
                                 </div>)}

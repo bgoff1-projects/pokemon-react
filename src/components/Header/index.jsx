@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import React from "react";
-import LeftHeader from "./LeftHeader";
-import RightHeader from "./RightHeader";
 import Party from "./Party";
-
+import Navbar from "./navbar";
+import './header.css';
 const Header = () => {
     return (
-        <div style={{'display': 'flex'}}>
-            <LeftHeader />
-            <Party/>
-            <RightHeader />
-        </div>
+        <span>
+            <Navbar/>
+            <div className='party'>
+                <Party/>
+            </div>
+        </span>
     );
 };
 

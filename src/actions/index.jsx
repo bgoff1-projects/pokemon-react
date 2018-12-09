@@ -35,6 +35,14 @@ export const flipGenerationFilter = generationToFlip => ({
     generationToFlip
 });
 
+export const flipAllTypesTrue = () => ({
+    type: 'FLIP_ALL_TYPE_FILTER_TRUE'
+});
+
+export const flipAllTypesFalse = () => ({
+    type: 'FLIP_ALL_TYPE_FILTER_FALSE'
+});
+
 export function getPokemon() {
     return dispatch => {
         return fetch(`${url}/pokemon`)

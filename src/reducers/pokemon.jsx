@@ -16,7 +16,7 @@ const pokemon = (state = initialState, action) => {
                 if (action.pokemon) {
                     const party = state.party;
                     for (const poke of state.all) {
-                        if (poke === action.pokemon) {
+                        if (poke.name === action.pokemon.name) {
                             party.push(poke);
                             break;
                         }

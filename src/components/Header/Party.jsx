@@ -32,7 +32,7 @@ class Party extends React.Component {
         }
         const div = <div>&nbsp;</div>;
         return (
-            <div className='col-md-8 text-center'>
+            <div className='text-center'>
                 { party.map((value, index) => {
                     if (value === 'empty') {
                         return <span style={ { 'display': 'inline-block' } } key={ index }><span

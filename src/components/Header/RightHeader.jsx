@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from "react";
 import { flipGenerationFilter } from "../../actions";
-import './header.css';
+
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
     generations: state.generationFilter

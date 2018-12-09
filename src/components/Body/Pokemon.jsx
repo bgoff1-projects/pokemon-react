@@ -18,7 +18,13 @@ class View extends React.Component {
 
     onClick(pokemon, index) {
         if (this.props.pokemon.party.length !== 6) {
-            this.props.dispatch(addPokemonToParty(pokemon));
+            this.props.dispatch(addPokemonToParty({
+                name: pokemon.name,
+                types: pokemon.types,
+                pokemonNumber: pokemon.pokemonNumber,
+                region: pokemon.region,
+                generation: pokemon.generation
+            }));
             this.props.dispatch(removePokemonFromGrid(index));
         }
     }
