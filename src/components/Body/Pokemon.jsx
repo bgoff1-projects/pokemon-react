@@ -16,7 +16,15 @@ class View extends React.Component {
         props.dispatch(getPokemon());
     }
 
-    onClick(pokemon, index) {
+    findIndex(number) {
+        for (let i = 0; i < this.props.pokemon.all.length; i++) {
+            if (this.props.pokemon.all[i].pokemonNumber === number) {
+                return i;
+            }
+        }
+    }
+
+    onClick(pokemon) {
         if (this.props.pokemon.party.length !== 6) {
             this.props.dispatch(addPokemonToParty({
                 name: pokemon.name,
@@ -25,7 +33,8 @@ class View extends React.Component {
                 region: pokemon.region,
                 generation: pokemon.generation
             }));
-            this.props.dispatch(removePokemonFromGrid(index));
+
+            this.props.dispatch(removePokemonFromGrid(this.findIndex(pokemon.pokemonNumber)));
         }
     }
 
