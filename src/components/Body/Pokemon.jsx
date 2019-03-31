@@ -117,7 +117,7 @@ class View extends React.Component {
                             let className = poke.types.length === 1 ? `circle ${poke.types[ 0 ]}` : `circle ${poke.types[ 1 ]}-main ${poke.types[ 0 ]}-secondary`;
                             const image = <img className={ className }
                                                src={ `data:image/png;base64, ${poke.image}` }
-                                               alt={ poke.name } width={ '52px' } height={ '52px' }
+                                               alt={ poke.name } width={ '64px' } height={ '64px' }
                                                onClick={ () => this.onClick(poke, index) }/>;
                             return (<span key={ poke.name } title={ poke.name }>{ image }</span>);
                         }) }
