@@ -1,13 +1,15 @@
 import { connect } from 'react-redux';
 import React from "react";
 import { getPokemon, addPokemonToParty, removePokemonFromGrid } from "../../actions/index";
+import { isGameFilter } from '../../reducers/gameFilter';
 import './Pokemon.css';
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
     party: state.party,
     typeFilter: state.typeFilter,
-    generationFilter: state.generationFilter
+    generationFilter: state.generationFilter,
+    gameFilter: state.gameFilter
 });
 
 class View extends React.Component {
@@ -18,7 +20,7 @@ class View extends React.Component {
 
     findIndex(number) {
         for (let i = 0; i < this.props.pokemon.all.length; i++) {
-            if (this.props.pokemon.all[i].pokemonNumber === number) {
+            if (this.props.pokemon.all[ i ].pokemonNumber === number) {
                 return i;
             }
         }
@@ -38,9 +40,53 @@ class View extends React.Component {
         }
     }
 
+    gameFilterToAcronym(gameFilter) {
+        switch (gameFilter) {
+            case 'Red | Blue | Yellow':
+                return 'RBY';
+            case 'Gold | Silver | Crystal':
+                return 'GSC';
+            case 'Ruby | Sapphire | Emerald':
+                return 'RSE';
+            case 'Diamond | Pearl':
+                return 'DP';
+            case 'Platinum':
+                return 'PT';
+            case 'HeartGold | SoulSilver':
+                return 'HGSS';
+            case 'Black | White':
+                return 'BW';
+            case 'Black 2 | White 2':
+                return 'BW2';
+            case 'X | Y':
+                return 'XY';
+            case 'Omega Ruby | Alpha Sapphire':
+                return 'ORAS';
+            case 'Sun | Moon':
+                return 'SM';
+            case 'Ultra Sun | Ultra Moon':
+                return 'USUM';
+            default:
+                return '';
+        }
+    }
+
+    getArrayFromMap(map) {
+        let result = [];
+        for (const i in map) {
+            if (map[i]) result.push(this.gameFilterToAcronym(i));
+        }
+        return result;
+    }
+
     filter() {
         if (this.props && this.props.pokemon.all) {
             return this.props.pokemon.all.filter(p => {
+                if (isGameFilter(this.props.gameFilter)) {
+                    if (!p.games.includes(this.getArrayFromMap(this.props.gameFilter)[0])) {
+                        return false;
+                    }
+                }
                 for (const generation in this.props.generationFilter) {
                     if (this.props.generationFilter.hasOwnProperty(generation) && this.props.generationFilter[ generation ] === false
                         && (p.hasOwnProperty('generation') && p.generation === Number.parseInt(generation))) {

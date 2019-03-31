@@ -1,10 +1,10 @@
-const generations = [1,2,3,4];
+const generations = [1,2,3,4,5,6,7];
 
 const initialState = {};
 for (const type of generations) {
     initialState[type] = true;
 }
-const typeFilter = (state = initialState, action) => {
+const generationFilter = (state = initialState, action) => {
     switch (action.type) {
         case 'FLIP_GEN_FILTER':
             for (const generation in state) {
@@ -19,4 +19,4 @@ const typeFilter = (state = initialState, action) => {
     }
 };
 
-export default typeFilter
+export default generationFilter;

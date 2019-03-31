@@ -35,6 +35,15 @@ export const flipGenerationFilter = generationToFlip => ({
     generationToFlip
 });
 
+export const flipGameFilter = gameToFlip => ({
+   type: 'FLIP_GAME_FILTER',
+   gameToFlip
+});
+
+export const turnOffAllGames = () => ({
+    type: 'SET_ALL_GAMES_OFF'
+});
+
 export const flipAllTypesTrue = () => ({
     type: 'FLIP_ALL_TYPE_FILTER_TRUE'
 });

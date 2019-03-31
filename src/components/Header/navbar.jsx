@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LeftHeader from "./LeftHeader";
 import RightHeader from "./RightHeader";
+import MiddleHeader from './MiddleHeader';
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -19,10 +20,9 @@ class Navbar extends React.Component {
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <ul className="navbar-nav mr-auto">
-                        <LeftHeader/>
-                    </ul>
-                    <RightHeader/>
+                    <LeftHeader style={{'margin-right': '50%'}}/>
+                    <MiddleHeader />
+                    <RightHeader />
                 </div>
             </nav>
         );

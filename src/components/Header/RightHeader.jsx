@@ -15,7 +15,7 @@ class LeftHeader extends React.Component {
                 count++;
             }
         }
-        if (count === 4) return 'All Generations';
+        if (count === 7) return 'All Generations';
         return count + ' Selected';
     }
 
@@ -37,6 +37,12 @@ class LeftHeader extends React.Component {
                 return `${gen}: Hoenn`;
             case 4:
                 return `${gen}: Sinnoh`;
+            case 5:
+                return `${gen}: Unova`;
+            case 6:
+                return `${gen}: Kalos`;
+            case 7:
+                return `${gen}: Alola`;
             default:
                 return gen;
         }
@@ -58,20 +64,22 @@ class LeftHeader extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        { <span>{ this.count() }</span> }
-                    </button>
-                    <div className="dropdown-menu">
-                        { this.getNames().map(val =>
-                            <div key={ val } className='ml-4'>
-                                <label className='checkbox'>
-                                    <input type='checkbox' value={ val } onChange={ () => this.onChange(val) }
-                                           defaultChecked={ this.check(val) }/>
-                                    { LeftHeader.addRegionalName(val) }
-                                </label>
-                            </div>) }
+                <div className='col-md-4'>
+                    <div className="dropdown float-right">
+                        <button className="btn btn-secondary dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            { <span>{ this.count() }</span> }
+                        </button>
+                        <div className="dropdown-menu">
+                            { this.getNames().map(val =>
+                                <div key={ val } className='ml-4'>
+                                    <label className='checkbox'>
+                                        <input type='checkbox' value={ val } onChange={ () => this.onChange(val) }
+                                               defaultChecked={ this.check(val) }/>
+                                        { LeftHeader.addRegionalName(val) }
+                                    </label>
+                                </div>) }
+                        </div>
                     </div>
                 </div>
             );
