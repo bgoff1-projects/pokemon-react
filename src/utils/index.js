@@ -1,6 +1,6 @@
 import { createMap } from './map';
 
-const env = 'DEV';
+const env = 'PROD';
 
 let URL = '';
 if (env === 'DEV') {
