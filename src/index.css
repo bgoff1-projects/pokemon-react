@@ -21,7 +21,7 @@ code {
     cursor: pointer;
 }
 
-@media not screen and (min-width: 600px) {
+@media not screen and (min-width: 800px) {
     .strengths {
         display: none;
     }

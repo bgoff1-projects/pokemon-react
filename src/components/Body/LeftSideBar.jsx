@@ -22,9 +22,9 @@ class LeftSideBar extends React.Component {
 
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
-            return (<div className='col-md-2 strengths text-right'>
-                <span className='text-center'>Strengths:</span>
-                <table style={{'width': '300px'}}>
+            return (<div className='col-md-2 text-right'>
+                <div className='text-right'>Strengths:</div>
+                <table style={{'width': '100px', 'margin-left': '65%', 'text-align': 'left'}}>
                     <tbody>
                     { types.map((val, index) => <tr key={index}>
                         <td>{ val }</td>
