@@ -18,9 +18,9 @@ class View extends React.Component {
         props.dispatch(getPokemon());
     }
 
-    findIndex(number) {
+    findIndex(number, name) {
         for (let i = 0; i < this.props.pokemon.all.length; i++) {
-            if (this.props.pokemon.all[ i ].pokemonNumber === number) {
+            if (this.props.pokemon.all[ i ].pokemonNumber === number && name === this.props.pokemon.all[i].name) {
                 return i;
             }
         }
@@ -36,7 +36,7 @@ class View extends React.Component {
                 generation: pokemon.generation
             }));
 
-            this.props.dispatch(removePokemonFromGrid(this.findIndex(pokemon.pokemonNumber)));
+            this.props.dispatch(removePokemonFromGrid(this.findIndex(pokemon.pokemonNumber, pokemon.name)));
         }
     }
 
