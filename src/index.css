@@ -25,6 +25,7 @@ code {
     .strengths {
         display: none;
     }
+
     .weaknesses {
         display: none;
     }
@@ -36,19 +37,40 @@ code {
 }
 
 .still-loading {
-    background-color: #96D9D6;
+    display: table;
     width: 100%;
-    height: 100%;
-}
-.pokeball {
-    -webkit-animation:spin 4s linear infinite;
-    -moz-animation:spin 4s linear infinite;
-    animation:spin 4s linear infinite;
-    width: 100px;
-    height: 100px;
-    margin: 25% 25% 25% 25%;
 }
 
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+.buffer {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.pokeball {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
+    width: 100px;
+    height: 100px;
+    margin: 20% 20% 20% 20%;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}

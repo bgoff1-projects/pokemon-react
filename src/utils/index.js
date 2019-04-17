@@ -36,3 +36,16 @@ export function isWeakAgainst(pokemon, type) {
     }
     return false;
 }
+
+export function isFilter(props) {
+    for (const filter in props.generationFilter) {
+        if (!props.generationFilter[ filter ]) return true;
+    }
+    for (const filter in props.gameFilter) {
+        if (props.gameFilter[ filter ]) return true;
+    }
+    for (const filter in props.typeFilter) {
+        if (!props.typeFilter[filter]) return true;
+    }
+    return false;
+}

@@ -3,6 +3,7 @@ import React from "react";
 import { getPokemon, addPokemonToParty, removePokemonFromGrid } from "../../actions/index";
 import { isGameFilter } from '../../reducers/gameFilter';
 import './Pokemon.css';
+import { isFilter } from '../../utils/'
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -20,7 +21,7 @@ class View extends React.Component {
 
     findIndex(number, name) {
         for (let i = 0; i < this.props.pokemon.all.length; i++) {
-            if (this.props.pokemon.all[ i ].pokemonNumber === number && name === this.props.pokemon.all[i].name) {
+            if (this.props.pokemon.all[ i ].pokemonNumber === number && name === this.props.pokemon.all[ i ].name) {
                 return i;
             }
         }
@@ -74,7 +75,7 @@ class View extends React.Component {
     getArrayFromMap(map) {
         let result = [];
         for (const i in map) {
-            if (map[i]) result.push(this.gameFilterToAcronym(i));
+            if (map[ i ]) result.push(this.gameFilterToAcronym(i));
         }
         return result;
     }
@@ -83,7 +84,7 @@ class View extends React.Component {
         if (this.props && this.props.pokemon.all) {
             return this.props.pokemon.all.filter(p => {
                 if (isGameFilter(this.props.gameFilter)) {
-                    if (!p.games.includes(this.getArrayFromMap(this.props.gameFilter)[0])) {
+                    if (!p.games.includes(this.getArrayFromMap(this.props.gameFilter)[ 0 ])) {
                         return false;
                     }
                 }
@@ -99,16 +100,27 @@ class View extends React.Component {
                 }
                 return false;
             }).sort((a, b) => {
-                if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
+                let filter = this.gameFilterToAcronym(isGameFilter(this.props.gameFilter));
+                if (filter) {
+                    return a.locations[ filter ] - b.locations[ filter ];
+                }
+                else if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
                     return a.pokemonNumber - b.pokemonNumber;
                 }
-                return a - b;
+                else return a - b;
             });
         } else return null;
     }
 
     render() {
         let pokemon = this.filter();
+        if (pokemon.length === 0 && !isFilter(this.props)) {
+            return <div className='still-loading'>
+                <div className='buffer'>
+                    <img src='./pokeball.png' alt='pokeball' className='pokeball img-fluid'/>
+                </div>
+            </div>
+        }
         if (pokemon) {
             return (
                 <div className='col-md-8 text-center'>
@@ -123,10 +135,6 @@ class View extends React.Component {
                         }) }
                 </div>
             );
-        } else {
-            return <div className='still-loading'>
-                <img src='./pokeball.png' alt='pokeball' className='pokeball'/>
-            </div>
         }
     }
 }

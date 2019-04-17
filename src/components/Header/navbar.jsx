@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import LeftHeader from "./LeftHeader";
 import RightHeader from "./RightHeader";
 import MiddleHeader from './MiddleHeader';
+import { isFilter } from "../../utils";
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -13,6 +14,9 @@ const mapStateToProps = state => ({
 
 class Navbar extends React.Component {
     render() {
+        if (!isFilter(this.props) && !this.props.all.all.length && !this.props.all.party.length) {
+            return <span/>;
+        }
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
