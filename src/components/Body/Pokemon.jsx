@@ -101,7 +101,7 @@ class View extends React.Component {
                 return false;
             }).sort((a, b) => {
                 let filter = this.gameFilterToAcronym(isGameFilter(this.props.gameFilter));
-                if (filter) {
+                if (filter && a.locations.hasOwnProperty(filter) && b.locations.hasOwnProperty(filter)) {
                     return a.locations[ filter ] - b.locations[ filter ];
                 }
                 else if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
