@@ -34,6 +34,9 @@ const pokemon = (state = initialState, action) => {
                 if (action.pokemon) {
                     const all = state.all;
                     let index = 0;
+                    if (all.find(x => x.pokemonNumber === action.pokemon.pokemonNumber)) {
+                        return { ...state };
+                    }
                     for (const poke of all) {
                         if (poke.number > index && poke.number < action.pokemon.number) {
                             index = state.all.indexOf(poke) + 1;
