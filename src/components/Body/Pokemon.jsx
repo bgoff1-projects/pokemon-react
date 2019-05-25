@@ -81,8 +81,11 @@ class View extends React.Component {
     }
 
     filter() {
+
         if (this.props && this.props.pokemon.all) {
-            return this.props.pokemon.all.filter(p => {
+            const toFilter = this.props.pokemon.checkingParty ?
+                this.props.pokemon.lackingCoverage : this.props.pokemon.all;
+            return toFilter.filter(p => {
                 if (isGameFilter(this.props.gameFilter)) {
                     if (!p.games.includes(this.getArrayFromMap(this.props.gameFilter)[ 0 ])) {
                         return false;
