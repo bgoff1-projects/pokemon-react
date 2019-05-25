@@ -53,6 +53,11 @@ const pokemon = (state = initialState, action) => {
                     return { ...state, all };
                 }
                 return { ...state };
+            case 'CHECK_PARTY':
+                if (state.party.length === 0) { { ...state }; }
+                let party = state.party;
+                
+                return {...state, all };
             default:
                 return { ...state };
         }

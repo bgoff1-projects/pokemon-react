@@ -18,6 +18,33 @@ export function isStrongAgainst(pokemon, type) {
     }
 }
 
+export function isTypeStrongAgainst(type, pokemon) {
+    const len = pokemon.types.length;
+    if (len !== 0) {
+        if (map.get(type).has(pokemon.types[0])) {
+            const effectiveness1 = map.get(type).get(pokemon.types[0]);
+            if (len === 1) return effectiveness1 === 2;
+            if (len === 2) {
+                if (map.get(type).has(pokemon.types[1])) {
+                    const effectiveness2 = map.get(type).get(pokemon.types[1]);
+                    if (effectiveness1 === 2 || effectiveness2 === 2) return true;
+                } else if (effectiveness1 === 2) return true;
+            }
+        } else if (map.get(type).has(pokemon.types[1])) {
+            if (map.get(type).get(pokemon.types[1]) === 2) return true;
+        }
+    }
+}
+
+export function getPartyTypes(party) {
+    const result = [];
+    for (const partyMember of party) {
+        for (const type of partyMember.types) {
+            if (result.includes())
+        }
+    }
+}
+
 export function isWeakAgainst(pokemon, type) {
     if (pokemon.types.length === 1) {
         if (map.get(type).has(pokemon.types[ 0 ]) && map.get(type).get(pokemon.types[ 0 ]) === 2) {
