@@ -1,6 +1,9 @@
+import { getPartyTypes, isAPartyMemberStrong } from '../utils/';
 const initialState = {
     all: [],
-    party: []
+    party: [],
+    checkingParty: false,
+    lackingCoverage: []
 };
 const pokemon = (state = initialState, action) => {
         switch (action.type) {
@@ -53,6 +56,16 @@ const pokemon = (state = initialState, action) => {
                     return { ...state, all };
                 }
                 return { ...state };
+            case 'CHECK_PARTY':
+                if (state.party.length === 0) { return { ...state }; }
+                state.checkingParty = true;
+                let partyTypes = getPartyTypes(state.party);
+                for (const pokemon of state.all) {
+                    if (!isAPartyMemberStrong(partyTypes, pokemon)) {
+                        state.lackingCoverage.push(pokemon);
+                    }
+                }
+                return {...state };
             default:
                 return { ...state };
         }

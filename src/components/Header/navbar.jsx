@@ -4,6 +4,7 @@ import LeftHeader from "./LeftHeader";
 import RightHeader from "./RightHeader";
 import MiddleHeader from './MiddleHeader';
 import { isFilter } from "../../utils";
+import { checkCoverage } from '../../actions/';
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -13,6 +14,11 @@ const mapStateToProps = state => ({
 });
 
 class Navbar extends React.Component {
+
+    handleClick() {
+        this.props.dispatch(checkCoverage());
+    }
+
     render() {
         if (!isFilter(this.props) && !this.props.all.all.length && !this.props.all.party.length) {
             return <span/>;
@@ -25,6 +31,7 @@ class Navbar extends React.Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <LeftHeader style={{'margin-right': '50%'}}/>
+                    <button onClick={() => this.handleClick() }>click me</button>
                     <MiddleHeader />
                     <RightHeader />
                 </div>

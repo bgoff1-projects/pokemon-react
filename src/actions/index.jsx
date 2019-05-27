@@ -5,6 +5,10 @@ export const addPokemonToStore = pokemon => ({
     pokemon
 });
 
+export const checkCoverage = () => ({
+    type: 'CHECK_PARTY'
+})
+
 export const addPokemonToParty = pokemon => ({
     type: 'ADD_TO_PARTY',
     pokemon,
