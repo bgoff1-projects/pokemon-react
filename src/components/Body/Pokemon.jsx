@@ -16,7 +16,9 @@ const mapStateToProps = state => ({
 class View extends React.Component {
     constructor(props) {
         super(props);
-        props.dispatch(getPokemon());
+        if (this.props.pokemon.all.length === 0) {
+            props.dispatch(getPokemon());
+        }
     }
 
     findIndex(number, name) {
@@ -103,11 +105,9 @@ class View extends React.Component {
                 let filter = this.gameFilterToAcronym(isGameFilter(this.props.gameFilter));
                 if (filter && a.locations.hasOwnProperty(filter) && b.locations.hasOwnProperty(filter)) {
                     return a.locations[ filter ] - b.locations[ filter ];
-                }
-                else if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
+                } else if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
                     return a.pokemonNumber - b.pokemonNumber;
-                }
-                else return a - b;
+                } else return a - b;
             });
         } else return null;
     }
@@ -126,9 +126,9 @@ class View extends React.Component {
                 <div className='col-md-8 text-center'>
                     {
                         pokemon.map((poke, index) => {
-                            let className = poke.types.length === 1 ? `circle ${poke.types[ 0 ]}` : `circle ${poke.types[ 1 ]}-main ${poke.types[ 0 ]}-secondary`;
+                            let className = poke.types.length === 1 ? `circle ${ poke.types[ 0 ] }` : `circle ${ poke.types[ 1 ] }-main ${ poke.types[ 0 ] }-secondary`;
                             const image = <img className={ className }
-                                               src={ `data:image/png;base64, ${poke.image}` }
+                                               src={ `data:image/png;base64, ${ poke.image }` }
                                                alt={ poke.name } width={ '64px' } height={ '64px' }
                                                onClick={ () => this.onClick(poke, index) }/>;
                             return (<span key={ poke.name } title={ poke.name }>{ image }</span>);
