@@ -64,7 +64,7 @@ class LeftHeader extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col-md-4'>
+                <div className='col-md-3'>
                     <div className="dropdown float-right">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

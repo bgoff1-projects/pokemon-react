@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
     selected: state.typeFilter
 });
 
-class LeftHeader extends React.Component {
+class TypeFilter extends React.Component {
     count() {
         let count = 0;
         for (const checked in this.props.selected) {
@@ -52,7 +52,7 @@ class LeftHeader extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col-md-4'>
+                <div className='col-md-3'>
                     <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,4 +79,4 @@ class LeftHeader extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(LeftHeader);
+export default connect(mapStateToProps)(TypeFilter);

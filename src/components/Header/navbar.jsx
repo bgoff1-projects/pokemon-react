@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LeftHeader from "./LeftHeader";
-import RightHeader from "./RightHeader";
-import MiddleHeader from './MiddleHeader';
-import { isFilter } from "../../utils";
-import { checkCoverage } from '../../actions/';
+import TypeFilter from './TypeFilter';
+import GenerationFilter from './GenerationFilter';
+import GameFilter from './GameFilter';
+import CoverageFilter from './CoverageFilter';
+import { isFilter } from '../../utils';
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -15,9 +15,6 @@ const mapStateToProps = state => ({
 
 class Navbar extends React.Component {
 
-    handleClick() {
-        this.props.dispatch(checkCoverage());
-    }
 
     render() {
         if (!isFilter(this.props) && !this.props.all.all.length && !this.props.all.party.length) {
@@ -30,10 +27,10 @@ class Navbar extends React.Component {
                     <span className="navbar-toggler-icon"/>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <LeftHeader style={{'margin-right': '50%'}}/>
-                    <button onClick={() => this.handleClick() }>click me</button>
-                    <MiddleHeader />
-                    <RightHeader />
+                    <TypeFilter />
+                    <CoverageFilter />
+                    <GameFilter />
+                    <GenerationFilter />
                 </div>
             </nav>
         );

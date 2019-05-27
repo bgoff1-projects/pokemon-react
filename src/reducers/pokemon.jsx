@@ -57,6 +57,11 @@ const pokemon = (state = initialState, action) => {
                 }
                 return { ...state };
             case 'CHECK_PARTY':
+                if (state.checkingParty) {
+                    state.checkingParty = false;
+                    state.lackingCoverage = [];
+                    return { ...state };
+                }
                 if (state.party.length === 0) { return { ...state }; }
                 state.checkingParty = true;
                 let partyTypes = getPartyTypes(state.party);

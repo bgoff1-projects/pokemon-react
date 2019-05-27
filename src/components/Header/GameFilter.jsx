@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
     games: state.gameFilter
 });
 
-class MiddleHeader extends React.Component {
+class GameFilter extends React.Component {
 
     count() {
         let count = 0;
@@ -43,7 +43,7 @@ class MiddleHeader extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col-md-4 text-center'>
+                <div className='col-md-3'>
                     <button className="btn btn-secondary dropdown-toggle" type="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         { <span>{this.count()}</span> }
@@ -64,4 +64,4 @@ class MiddleHeader extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(MiddleHeader);
+export default connect(mapStateToProps)(GameFilter);
