@@ -109,6 +109,7 @@ class View extends React.Component {
                 if (filter && a.locations.hasOwnProperty(filter) && b.locations.hasOwnProperty(filter)) {
                     return a.locations[ filter ] - b.locations[ filter ];
                 } else if (a.hasOwnProperty('pokemonNumber') && b.hasOwnProperty('pokemonNumber')) {
+                    if (a.pokemonNumber === b.pokemonNumber) { return a.generation - b.generation; }
                     return a.pokemonNumber - b.pokemonNumber;
                 } else return a - b;
             });
