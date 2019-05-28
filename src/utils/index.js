@@ -1,6 +1,6 @@
 import { createMap } from './map';
 
-const env = 'DEV';
+const env = 'PROD';
 
 let URL = '';
 if (env === 'DEV') {
@@ -27,7 +27,7 @@ export function isTypeStrongAgainst(type, pokemon) {
             if (len === 2) {
                 if (map.get(type).has(pokemon.types[1])) {
                     const effectiveness2 = map.get(type).get(pokemon.types[1]);
-                    if (effectiveness1 === 2 || effectiveness2 === 2) return true;
+                    if ((effectiveness1 === 2 && effectiveness2 >= 1) || (effectiveness2 === 2 && effectiveness1 >= 1)) return true;
                 } else if (effectiveness1 === 2) return true;
             }
         } else if (map.get(type).has(pokemon.types[1])) {
