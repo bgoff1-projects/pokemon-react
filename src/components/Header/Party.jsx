@@ -75,7 +75,7 @@ class Party extends React.Component {
                         <br/>
                     </span>
                 }) }
-                    <img src="/add_team.svg" alt='add team' onClick={() => this.saveParty() }
+                    <img src="add_team.svg" alt='add team' onClick={() => this.saveParty() }
                          className="addPokemon" title="Add Pokemon To Party"/>
                 </span>
             </div>
