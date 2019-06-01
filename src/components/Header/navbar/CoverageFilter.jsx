@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { checkCoverage } from "../../actions";
+import { checkCoverage } from "../../../actions";
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -14,7 +14,7 @@ class CoverageFilter extends React.Component {
 
     render() {
         return (
-            <div className='col-md-3'>
+            <div className='col'>
                 <button className='btn btn-secondary' onClick={ () => this.handleClick() }>Check Coverage</button>
             </div>
         );

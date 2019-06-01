@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import React from "react";
-import Body from './Body/';
-import Header from "./Header/";
-
+import Body from './Body';
+import Header from "./Header";
+import Footer from './Body/Footer';
 const Page = () => {
     return (
         <div>
             <Header/>
             <Body/>
+            <Footer/>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import TypeFilter from './TypeFilter';
 import GenerationFilter from './GenerationFilter';
 import GameFilter from './GameFilter';
 import CoverageFilter from './CoverageFilter';
-import { isFilter } from '../../utils';
+import { isFilter } from '../../../utils';
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -14,8 +14,6 @@ const mapStateToProps = state => ({
 });
 
 class Navbar extends React.Component {
-
-
     render() {
         if (!isFilter(this.props) && !this.props.all.all.length && !this.props.all.party.length) {
             return <span/>;
@@ -26,7 +24,7 @@ class Navbar extends React.Component {
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"/>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarCollapse">
+                <div className="collapse navbar-collapse row" id="navbarCollapse">
                     <TypeFilter />
                     <CoverageFilter />
                     <GameFilter />

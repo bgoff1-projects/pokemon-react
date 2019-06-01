@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { flipGenerationFilter } from "../../actions";
+import { flipGenerationFilter } from "../../../actions";
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -64,8 +64,8 @@ class LeftHeader extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col-md-3'>
-                    <div className="dropdown float-right">
+                <div className='col'>
+                    <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle" type="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             { <span>{ this.count() }</span> }

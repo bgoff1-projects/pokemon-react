@@ -56,6 +56,16 @@ export const flipAllTypesFalse = () => ({
     type: 'FLIP_ALL_TYPE_FILTER_FALSE'
 });
 
+export const saveParty = (party) => ({
+    type: 'SAVE_PARTY',
+    party
+});
+
+export const removeParty = (party) => ({
+    type: 'REMOVE_PARTY',
+    party
+});
+
 export function getPokemon() {
     return dispatch => {
         return fetch(`${url}/pokemon`)

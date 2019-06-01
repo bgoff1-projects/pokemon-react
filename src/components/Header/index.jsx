@@ -3,6 +3,7 @@ import React from "react";
 import Party from "./Party";
 import Navbar from "./navbar";
 import './header.css';
+
 const Header = () => {
     return (
         <span>

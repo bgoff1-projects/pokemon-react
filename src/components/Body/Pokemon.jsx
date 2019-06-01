@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { getPokemon, addPokemonToParty, removePokemonFromGrid } from "../../actions/index";
+import { getPokemon, addPokemonToParty, removePokemonFromGrid } from "../../actions";
 import { isGameFilter } from '../../reducers/gameFilter';
 import './Pokemon.css';
 import { isFilter } from '../../utils/'

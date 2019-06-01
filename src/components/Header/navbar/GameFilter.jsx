@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { flipGameFilter } from "../../actions";
+import { flipGameFilter } from "../../../actions";
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -43,7 +43,7 @@ class GameFilter extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col-md-3'>
+                <div className='col'>
                     <button className="btn btn-secondary dropdown-toggle" type="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         { <span>{this.count()}</span> }
