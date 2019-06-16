@@ -1,4 +1,4 @@
-const games = [
+export const games = [
     'Red | Blue | Yellow',
     'Gold | Silver | Crystal',
     'Ruby | Sapphire | Emerald',

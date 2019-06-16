@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../Body/Pokemon.css';
+import '../../styles/type-colorings.scss';
 import { addPokemonToGrid, removePokemonFromParty, saveParty } from "../../actions";
+import { getImageSource } from "../../utils/pokemon";
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -28,10 +29,11 @@ class Party extends React.Component {
     saveParty() {
         const newParty = [];
         for (const partyMember of this.props.pokemon.party) {
-            newParty.push({...partyMember});
+            newParty.push(partyMember.name);
         }
         this.props.dispatch(saveParty(newParty));
     }
+
 
     render() {
         const party = Party.setUp(this.props.pokemon.party);
@@ -63,7 +65,7 @@ class Party extends React.Component {
                         </span></span>);
                     }
                     return <span style={ { 'display': 'inline-block' } } key={ index }>
-                        <img className={ className } src={ `data:image/png;base64, ${ value.image }` }
+                        <img className={ className } src={ getImageSource(value) }
                              alt={ value.name } width={ '96px' } height={ '96px' }
                              onClick={ () => this.onClick(value, index) }/>
                         <div className='name'>
@@ -75,8 +77,10 @@ class Party extends React.Component {
                         <br/>
                     </span>
                 }) }
-                    <img src="add_team.svg" alt='add team' onClick={() => this.saveParty() }
-                         className="addPokemon" title="Add Pokemon To Party"/>
+                    <span style={ { 'verticalAlign': 'top', 'paddingTop': '.75em' } } className="icon"
+                          onClick={ () => this.saveParty() } title='Save Pokemon Party'>
+                        <i className="fas fa-plus-circle pointer"/>
+                    </span>
                 </span>
             </div>
         );

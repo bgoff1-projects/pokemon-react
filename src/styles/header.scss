@@ -1,0 +1,22 @@
+@media not screen and (min-width: 600px) {
+    .party {
+        padding-top: 10%;
+    }
+}
+
+.partyMembers {
+    display: inline-block;
+    margin: 1vh 0 1vh 0;
+}
+
+.rounded {
+    border-radius: 1em;
+}
+
+.addPokemon {
+    padding-bottom: 1vh;
+    padding-left: 1vw
+}
+.addPokemon:hover {
+    cursor: pointer;
+}

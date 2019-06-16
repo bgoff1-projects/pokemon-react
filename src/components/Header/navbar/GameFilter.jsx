@@ -8,6 +8,13 @@ const mapStateToProps = state => ({
 });
 
 class GameFilter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false
+        }
+    }
+
 
     count() {
         let count = 0;
@@ -43,18 +50,17 @@ class GameFilter extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col'>
-                    <button className="btn btn-secondary dropdown-toggle" type="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        { <span>{this.count()}</span> }
-                    </button>
-                    <div className="dropdown-menu" style={ { 'right': 0, 'left': 0 } }>
+                <div className='navbar-item has-dropdown is-hoverable'>
+                    <span className="navbar-link" onClick={ () => this.setState({ active: !this.state.active }) }>
+                        { this.count() }
+                    </span>
+                    <div className={ this.state.active ? 'navbar-dropdown is-active' : 'navbar-dropdown navbar-menu' }>
                         { this.getNames().map(val =>
-                            <div key={ val } className='ml-4'>
-                                <label>
-                                <input type='checkbox' value={ val } onChange={ () => this.onChange(val) }
-                                    checked={this.check(val)} />
-                                { val }
+                            <div key={ val }>
+                                <label className='navbar-item'>
+                                    <input type='checkbox' value={ val } onChange={ () => this.onChange(val) }
+                                           checked={ this.check(val) }/>
+                                    { val }
                                 </label>
                             </div>) }
                     </div>

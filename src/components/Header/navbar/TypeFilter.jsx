@@ -8,10 +8,17 @@ const mapStateToProps = state => ({
 });
 
 class TypeFilter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: true
+        }
+    }
+
     count() {
         let count = 0;
         for (const checked in this.props.selected) {
-            if (this.props.selected.hasOwnProperty(checked) && this.props.selected[checked] === true) {
+            if (this.props.selected.hasOwnProperty(checked) && this.props.selected[ checked ] === true) {
                 count++;
             }
         }
@@ -30,7 +37,7 @@ class TypeFilter extends React.Component {
 
     check(checkedName) {
         for (const checkBox in this.props.selected) {
-            if (checkBox === checkedName && this.props.selected[checkedName] === true) {
+            if (checkBox === checkedName && this.props.selected[ checkedName ] === true) {
                 return true;
             }
         }
@@ -52,26 +59,24 @@ class TypeFilter extends React.Component {
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
             return (
-                <div className='col'>
-                    <div className="dropdown">
-                        <button className="btn btn-secondary dropdown-toggle" type="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {<span>{this.count()}</span>}
-                        </button>
-                        <div className="dropdown-menu">
-                            <div key={ 'all' } className='ml-4'>
-                                <label className='checkbox'>
-                                    <button onClick={() => this.toggleAll()} >Select all</button>
-                                </label>
-                            </div>
-                            {this.getNames().map(val =>
-                                <div key={ val } className='ml-4'>
-                                    <label className='checkbox'>
-                                        <input type='checkbox' value={val} onChange={() => this.onChange(val)} checked={this.check(val)}/>
-                                        { val }
-                                    </label>
-                                </div>)}
+                <div className='navbar-item has-dropdown is-hoverable'>
+                    <span className="navbar-link" onClick={ () => this.setState({ active: !this.state.active }) }>
+                        { this.count() }
+                    </span>
+                    <div className={ this.state.active ? 'navbar-dropdown is-active' : 'navbar-dropdown navbar-menu' }>
+                        <div key={ 'all' }>
+                            <label className='navbar-item'>
+                                <button className='button' onClick={ () => this.toggleAll() }>Select all</button>
+                            </label>
                         </div>
+                        { this.getNames().map(val =>
+                            <div key={ val }>
+                                <label className='navbar-item'>
+                                    <input type='checkbox' value={ val } onChange={ () => this.onChange(val) }
+                                           checked={ this.check(val) }/>
+                                    { val }
+                                </label>
+                            </div>) }
                     </div>
                 </div>
             );

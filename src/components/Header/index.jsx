@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from "react";
 import Party from "./Party";
 import Navbar from "./navbar";
-import './header.css';
+import '../../styles/header.scss';
 
 const Header = () => {
     return (

@@ -14,9 +14,7 @@ class CoverageFilter extends React.Component {
 
     render() {
         return (
-            <div className='col'>
-                <button className='btn btn-secondary' onClick={ () => this.handleClick() }>Check Coverage</button>
-            </div>
+            <div className='navbar-item pointer' onClick={ () => this.handleClick() }>Check Coverage</div>
         );
     }
 }

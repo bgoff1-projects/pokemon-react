@@ -1,0 +1,42 @@
+/* region misc */
+.grid {
+    display: flex;
+    flex-grow: 2;
+    flex-wrap: wrap;
+}
+
+.empty {
+    height: 96px;
+    width: 96px;
+    background-color: #777;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+    border: 3px solid #777;
+}
+
+table.text-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card {
+    height: 250px;
+    width: 150px;
+    display: inline-block;
+    background-color: #444;
+    margin: 3px;
+    padding-top: 15px;
+    border-radius: 5%;
+}
+
+.type {
+    border-radius: 15%;
+    padding: 1px;
+    margin: 3px;
+}
+
+.name {
+    margin: 1px;
+}
+/* endregion */

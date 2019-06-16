@@ -6,7 +6,7 @@ import RightSideBar from "./RightSideBar";
 
 const Body = () => {
     return (
-        <div style={{'display': 'flex'}}>
+        <div className='columns'>
             <LeftSideBar />
             <Pokemon/>
             <RightSideBar />

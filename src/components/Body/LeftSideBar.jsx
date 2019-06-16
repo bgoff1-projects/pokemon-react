@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from "react";
-import './Pokemon.css';
 import types from '../../utils/types';
 import { isStrongAgainst } from "../../utils";
 
@@ -22,12 +21,12 @@ class LeftSideBar extends React.Component {
 
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
-            return (<div className='col-md-2 strengths text-right'>
-                <div className='text-right'>Strengths:</div>
-                <table style={{'width': '100px', 'marginLeft': '65%', 'textAlign': 'left'}}>
+            return (<div className='column text-center strengths'>
+                <div >Strengths:</div>
+                <table className='text-center'>
                     <tbody>
                     { types.map((val, index) => <tr key={index}>
-                        <td>{ val }</td>
+                        <td>&nbsp;{ val }&nbsp;</td>
                         <td>{ this.findStrengthCount(val) }</td>
                     </tr>) }
                     </tbody>

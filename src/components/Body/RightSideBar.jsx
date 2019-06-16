@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import React from "react";
-import './Pokemon.css';
 import types from '../../utils/types';
 import { isWeakAgainst } from "../../utils";
 
@@ -22,12 +21,12 @@ class RightSideBar extends React.Component {
 
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
-            return (<div className='col-md-2 weaknesses text-left'>
-                <span className='text-center'>Weaknesses:</span>
-                <table style={{'width': '100px'}}>
+            return (<div className='column weaknesses text-center'>
+                <span>Weaknesses:</span>
+                <table className='text-center'>
                     <tbody>
                     { types.map((val, index) => <tr key={index}>
-                        <td>{ val }</td>
+                        <td>&nbsp;{ val }&nbsp;</td>
                         <td>{ this.findWeaknessCount(val) }</td>
                     </tr>) }
                     </tbody>
