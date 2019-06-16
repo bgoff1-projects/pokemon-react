@@ -30,7 +30,7 @@ class Navbar extends React.Component {
             <nav role="navigation" className="navbar">
                 <div className='navbar-brand'>
                     <span className='navbar-item'>
-                        <img src='../pokeball.png' alt='pokeball'/>
+                        <img src='./pokeball.png' alt='pokeball'/>
                         <span style={ { 'paddingLeft': '0.5em' } }>Pokemon Team Builder</span>
                     </span>
                     <button className={ this.state.active ? 'navbar-burger button is-active' : 'navbar-burger button' }
