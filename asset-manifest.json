@@ -1,13 +1,13 @@
 {
   "main.css": "/pokemon/static/css/main.dffa5f2f.chunk.css",
-  "main.js": "/pokemon/static/js/main.d67febc2.chunk.js",
-  "main.js.map": "/pokemon/static/js/main.d67febc2.chunk.js.map",
+  "main.js": "/pokemon/static/js/main.9c9939b2.chunk.js",
+  "main.js.map": "/pokemon/static/js/main.9c9939b2.chunk.js.map",
   "runtime~main.js": "/pokemon/static/js/runtime~main.0909cbae.js",
   "runtime~main.js.map": "/pokemon/static/js/runtime~main.0909cbae.js.map",
   "static/js/2.ce726003.chunk.js": "/pokemon/static/js/2.ce726003.chunk.js",
   "static/js/2.ce726003.chunk.js.map": "/pokemon/static/js/2.ce726003.chunk.js.map",
   "index.html": "/pokemon/index.html",
-  "precache-manifest.c530aa538c26c5f90b65cb0f1c344b89.js": "/pokemon/precache-manifest.c530aa538c26c5f90b65cb0f1c344b89.js",
+  "precache-manifest.dbfb0e84cf32a10d38bceb2802a4121e.js": "/pokemon/precache-manifest.dbfb0e84cf32a10d38bceb2802a4121e.js",
   "service-worker.js": "/pokemon/service-worker.js",
   "static/css/main.dffa5f2f.chunk.css.map": "/pokemon/static/css/main.dffa5f2f.chunk.css.map"
 }
