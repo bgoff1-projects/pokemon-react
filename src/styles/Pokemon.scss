@@ -39,4 +39,17 @@ table.text-center {
 .name {
     margin: 1px;
 }
+
+.type-table-header {
+    position: sticky;
+    top: 22.5vh;
+}
+
+.strengths, .weaknesses {
+    @media screen and (max-width: 600px) {
+        display: none;
+    }
+    position: sticky;
+    top: 25vh;
+}
 /* endregion */

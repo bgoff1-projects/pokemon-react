@@ -6,7 +6,7 @@ import Footer from './Body/Footer';
 
 const Page = () => {
     return (
-        <div style={ { 'position': 'relative' } }>
+        <div style={ { 'position': 'relative', 'minHeight': '100vh' } }>
             <Header/>
             <Body/>
             <Footer/>

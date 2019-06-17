@@ -21,11 +21,11 @@ class LeftSideBar extends React.Component {
 
     render() {
         if (this.props.pokemon.all && this.props.pokemon.all.length !== 0) {
-            return (<div className='column text-center strengths'>
-                <div >Strengths:</div>
-                <table className='text-center'>
+            return (<div className='column text-center'>
+                <div className='type-table-header'>Strengths:</div>
+                <table className='text-center strengths'>
                     <tbody>
-                    { types.map((val, index) => <tr key={index}>
+                    { types.map((val, index) => <tr key={ index }>
                         <td>&nbsp;{ val }&nbsp;</td>
                         <td>{ this.findStrengthCount(val) }</td>
                     </tr>) }
