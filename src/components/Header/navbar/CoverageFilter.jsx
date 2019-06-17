@@ -14,7 +14,7 @@ class CoverageFilter extends React.Component {
 
     render() {
         return (
-            <div className='navbar-item pointer' onClick={ () => this.handleClick() }>Check Coverage</div>
+            <div className='navbar-item pointer' onClick={ () => this.handleClick() }>{ this.props.pokemon.checkingParty ? 'Showing Pokemon without Coverage' : 'Check Coverage'}</div>
         );
     }
 }

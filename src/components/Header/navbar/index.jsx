@@ -6,6 +6,7 @@ import GameFilter from './GameFilter';
 import GenerationFilter from './GenerationFilter';
 import { isFilter } from '../../../utils';
 import PartiesLink from "./PartiesLink";
+import ResetFilters from "./ResetFilters";
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -27,7 +28,7 @@ class Navbar extends React.Component {
             return <span/>;
         }
         return (
-            <nav role="navigation" className="navbar">
+            <nav role="navigation" className="navbar is-fixed-top">
                 <div className='navbar-brand'>
                     <span className='navbar-item'>
                         <img src='./pokeball.png' alt='pokeball'/>
@@ -42,11 +43,16 @@ class Navbar extends React.Component {
                     </button>
                 </div>
                 <div id="header" className={ this.state.active ? 'navbar-menu is-active' : 'navbar-menu' }>
-                    <TypeFilter/>
-                    <CoverageFilter />
-                    <GameFilter />
-                    <GenerationFilter />
-                    <PartiesLink/>
+                    <div className='navbar-start' style={ { 'justifyContent': 'space-between' } }>
+                        <TypeFilter/>
+                        <GameFilter/>
+                        <GenerationFilter/>
+                        <CoverageFilter/>
+                        <ResetFilters/>
+                    </div>
+                    <div className='navbar-end'>
+                        <PartiesLink/>
+                    </div>
                 </div>
             </nav>
         );

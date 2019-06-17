@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from "react";
-import { flipGameFilter } from "../../../actions";
+import { clearParty, flipGameFilter } from "../../../actions";
 
 const mapStateToProps = state => ({
     pokemon: state.pokemon,
@@ -14,7 +14,6 @@ class GameFilter extends React.Component {
             active: false
         }
     }
-
 
     count() {
         let count = 0;
@@ -43,7 +42,18 @@ class GameFilter extends React.Component {
         return false;
     }
 
+    findToggledGame() {
+        for (const game in this.props.games) {
+            if (this.props.games[ game ]) {
+                return game;
+            }
+        }
+    }
+
     onChange(type) {
+        if (this.findToggledGame() !== type && this.props.pokemon.party.length > 0) {
+            this.props.dispatch(clearParty(this.props.pokemon.party));
+        }
         this.props.dispatch(flipGameFilter(type));
     }
 

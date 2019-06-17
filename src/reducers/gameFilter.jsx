@@ -14,6 +14,7 @@ export const games = [
 ];
 
 const initialState = {};
+
 for (const type of games) {
     initialState[ type ] = false;
 }
@@ -49,6 +50,11 @@ const gameFilter = (state = initialState, action) => {
                 if (state.hasOwnProperty(game)) {
                     state[ game ] = false;
                 }
+            }
+            return { ...state };
+        case 'RESET_ALL_FILTERS':
+            for (const type of games) {
+                state[ type ] = false;
             }
             return { ...state };
         default:

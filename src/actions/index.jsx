@@ -66,6 +66,15 @@ export const removeParty = (party) => ({
     party
 });
 
+export const resetAllFilters = () => ({
+    type: 'RESET_ALL_FILTERS'
+});
+
+export const clearParty = (members) => ({
+    type: 'CLEAR_PARTY',
+    members
+});
+
 export function getPokemon() {
     return dispatch => {
         return fetch(`${url}/pokemon`)

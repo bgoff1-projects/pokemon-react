@@ -1,4 +1,21 @@
 import { getPartyTypes, isAPartyMemberStrong } from '../utils/';
+
+const insertPokemon = (state, pokemon) => {
+    const all = state.all;
+    let index = 0;
+    if (all.find(x => x.name === pokemon.name)) {
+        return { ...state };
+    }
+    for (const poke of all) {
+        if (poke.number > index && poke.number < pokemon.number) {
+            index = state.all.indexOf(poke) + 1;
+            if (index === pokemon.number - 1) break;
+        }
+    }
+    all.splice(index, 0, pokemon);
+    return { ...state, all };
+};
+
 const initialState = {
     all: [],
     party: [],
@@ -35,19 +52,7 @@ const pokemon = (state = initialState, action) => {
                 return { ...state };
             case 'ADD_POKEMON':
                 if (action.pokemon) {
-                    const all = state.all;
-                    let index = 0;
-                    if (all.find(x => x.name === action.pokemon.name)) {
-                        return { ...state };
-                    }
-                    for (const poke of all) {
-                        if (poke.number > index && poke.number < action.pokemon.number) {
-                            index = state.all.indexOf(poke) + 1;
-                            if (index === action.pokemon.number - 1) break;
-                        }
-                    }
-                    all.splice(index, 0, action.pokemon);
-                    return { ...state, all };
+                    return insertPokemon(state, action.pokemon);
                 } else return { ...state };
             case 'REMOVE_POKEMON':
                 if (action.index || action.index === 0) {
@@ -62,7 +67,9 @@ const pokemon = (state = initialState, action) => {
                     state.lackingCoverage = [];
                     return { ...state };
                 }
-                if (state.party.length === 0) { return { ...state }; }
+                if (state.party.length === 0) {
+                    return { ...state };
+                }
                 state.checkingParty = true;
                 let partyTypes = getPartyTypes(state.party);
                 for (const pokemon of state.all) {
@@ -70,7 +77,17 @@ const pokemon = (state = initialState, action) => {
                         state.lackingCoverage.push(pokemon);
                     }
                 }
-                return {...state };
+                return { ...state };
+            case 'RESET_ALL_FILTERS':
+                state.checkingParty = false;
+                state.lackingCoverage = [];
+                return { ...state };
+            case 'CLEAR_PARTY':
+                state.party = [];
+                for (const partyMember of action.members) {
+                    state = insertPokemon(state, partyMember);
+                }
+                return { ...state };
             default:
                 return { ...state };
         }
