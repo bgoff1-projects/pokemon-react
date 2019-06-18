@@ -82,6 +82,7 @@ const pokemon = (state = initialState, action) => {
             case 'RESET_ALL_FILTERS':
                 state.checkingParty = false;
                 state.lackingCoverage = [];
+                state.searchFilter = '';
                 return { ...state };
             case 'CLEAR_PARTY':
                 state.party = [];
