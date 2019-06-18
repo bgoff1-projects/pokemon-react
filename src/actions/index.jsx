@@ -75,6 +75,11 @@ export const clearParty = (members) => ({
     members
 });
 
+export const updateSearchFilter = (searchFilter) => ({
+    type: 'UPDATE_SEARCH_FILTER',
+    searchFilter
+});
+
 export function getPokemon() {
     return dispatch => {
         return fetch(`${url}/pokemon`)

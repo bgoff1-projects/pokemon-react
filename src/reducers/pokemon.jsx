@@ -20,7 +20,8 @@ const initialState = {
     all: [],
     party: [],
     checkingParty: false,
-    lackingCoverage: []
+    lackingCoverage: [],
+    searchFilter: ''
 };
 const pokemon = (state = initialState, action) => {
         switch (action.type) {
@@ -87,6 +88,9 @@ const pokemon = (state = initialState, action) => {
                 for (const partyMember of action.members) {
                     state = insertPokemon(state, partyMember);
                 }
+                return { ...state };
+            case 'UPDATE_SEARCH_FILTER':
+                state.searchFilter = action.searchFilter;
                 return { ...state };
             default:
                 return { ...state };

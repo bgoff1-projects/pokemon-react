@@ -84,5 +84,5 @@ export function isFilter(props) {
     for (const filter in props.typeFilter) {
         if (!props.typeFilter[filter]) return true;
     }
-    return false;
+    return props.pokemon && !props.pokemon.checkingParty && props.pokemon.searchFilter;
 }

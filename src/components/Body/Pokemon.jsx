@@ -48,24 +48,25 @@ class View extends React.Component {
         if (this.props && this.props.pokemon.all) {
             const toFilter = this.props.pokemon.checkingParty ?
                 this.props.pokemon.lackingCoverage : this.props.pokemon.all;
-            return toFilter.filter(p => {
-                if (isGameFilter(this.props.gameFilter)) {
-                    if (!p.games.includes(getArrayFromMap(this.props.gameFilter)[ 0 ])) {
-                        return false;
-                    }
-                }
+            const gamesFiltered = toFilter.filter(p => !(isGameFilter(this.props.gameFilter) && !p.games.includes(getArrayFromMap(this.props.gameFilter)[ 0 ])));
+            const genFiltered = gamesFiltered.filter(p => {
                 for (const generation in this.props.generationFilter) {
                     if (this.props.generationFilter.hasOwnProperty(generation) && this.props.generationFilter[ generation ] === false
                         && (p.hasOwnProperty('generation') && p.generation === Number.parseInt(generation))) {
                         return false;
                     }
                 }
+                return true;
+            });
+            const searchFiltered = genFiltered.filter(p => !(this.props.pokemon.searchFilter && !p.name.includes(this.props.pokemon.searchFilter)));
+            const typeFiltered = searchFiltered.filter(p => {
                 for (const type in this.props.typeFilter) {
                     if (this.props.typeFilter.hasOwnProperty(type) && this.props.typeFilter[ type ] === true &&
                         (p.types[ 0 ] === type || p.types[ 1 ] === type)) return true;
                 }
                 return false;
-            }).sort((a, b) => {
+            });
+            return typeFiltered.sort((a, b) => {
                 let filter = gameFilterToAcronym(isGameFilter(this.props.gameFilter));
                 if (filter && a.locations.hasOwnProperty(filter) && b.locations.hasOwnProperty(filter)) {
                     return a.locations[ filter ] - b.locations[ filter ];

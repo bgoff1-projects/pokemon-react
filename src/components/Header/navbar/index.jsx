@@ -7,6 +7,7 @@ import GenerationFilter from './GenerationFilter';
 import { isFilter } from '../../../utils';
 import PartiesLink from "./PartiesLink";
 import ResetFilters from "./ResetFilters";
+import SearchFilter from "./SearchFilter";
 
 const mapStateToProps = state => ({
     all: state.pokemon,
@@ -47,6 +48,7 @@ class Navbar extends React.Component {
                         <TypeFilter/>
                         <GameFilter/>
                         <GenerationFilter/>
+                        <SearchFilter/>
                         <CoverageFilter/>
                         <ResetFilters/>
                     </div>
